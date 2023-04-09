@@ -18,7 +18,7 @@ def ultimas_promocoes():
 
 
 menu = """
-<a href="/">Página inicial</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a>
+<a href="/">Página inicial</a> | <a href="/promoções">Promoções</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a>
 <br>
 """
 
@@ -35,7 +35,7 @@ def contato():
   return menu + "Aqui vai o conteúdo da página Contato"
 
 
-@app.route("promocoes")
+@app.route("/promocoes")
 def promocoes():
   conteudo = menu + """
   Encontrei as seguintes promoções no <a href="https://t.me/promocoeseachadinhos">@promocoeseachadinhos</a>:
