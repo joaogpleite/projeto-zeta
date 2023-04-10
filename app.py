@@ -1,5 +1,6 @@
 import os
 
+import pandas as pd
 import gspread
 import requests
 import telebot
@@ -20,8 +21,9 @@ planilha = api.open_by_key("1bmLZIrWU1GG_ikJKRcZNtmmFELcYrBK2dMYqFQIV0Gs")
 sheet = planilha.worksheet("lic1")
 app = Flask(__name__)
 
-@bot.message_handler(commands=['classificar'])
-def classify(message):
+# define a new route for handling the /classificar command
+@app.route("/classificar", methods=["POST"])
+def classificar():
     # open the Google Sheets document
     sheet = client.open_by_url(doc_url).sheet1
 
@@ -51,71 +53,11 @@ def classify(message):
     response += f"Andamento: {andamento}\n"
     response += f"Em aberto: {aberto}\n"
     response += f"Encerrada: {encerrada}"
-    bot.send_message(message.chat.id, response)
+    
+    # use the Telegram API to send the response back to the user
+    chat_id = request.json["message"]["chat"]["id"]
+    bot.send_message(chat_id, response)
 
-# define the bot command
-@bot.message_handler(commands=['start'])
-def start(message):
-    bot.send_message(message.chat.id, "Olá, para classificar a sua planilha digite classificar")
-
-def ultimas_promocoes():
-  scraper = ChannelScraper()
-  contador = 0
-  resultado = []
-  for message in scraper.messages("promocoeseachadinhos"):
-    contador += 1
-    texto = message.text.strip().splitlines()[0]
-    resultado.append(f"{message.created_at} {texto}")
-    if contador == 10:
-      return resultado
-
-
-menu = """
-<a href="/">Página inicial</a> | <a href="/promocoes">Promocoes</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a>
-<br>
-"""
-
-@app.route("/")
-def index():
-  return menu + "Olá, mundo! Esse é meu site. (João Gabriel)"
-
-@app.route("/sobre")
-def sobre():
-  return menu + "Aqui vai o conteúdo da página Sobre"
-
-@app.route("/contato")
-def contato():
-  return menu + "Aqui vai o conteúdo da página Contato"
-
-
-@app.route("/promocoes")
-def promocoes():
-  conteudo = menu + """
-  Encontrei as seguintes promoções no <a href="https://t.me/promocoeseachadinhos">@promocoeseachadinhos</a>:
-  <br>
-  <ul>
-  """
-  for promocao in ultimas_promocoes():
-    conteudo += f"<li>{promocao}</li>"
-    return conteudo + "</ul>"
-
-@app.route("/dedoduro")
-def dedoduro():
-  mensagem = {"chat_id": TELEGRAM_ADMIN_ID, "text": "Alguém acessou a página dedo duro!"}
-  resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=mensagem)
-  return f"Mensagem enviada. Resposta ({resposta.status_code}): {resposta.text}"
-
-@app.route("/dedoduro2")
-def dedoduro2():
-  sheet.append_row(["Joao", "Leite", "a partir do Flask"])
-  return "Planilha escrita!"
-
-@app.route("/telegram-bot", methods=["POST"])
-def telegram_bot():
-  update = request.json
-  chat_id = update["message"]["chat"]["id"]
-  message = update["message"]["text"]
-  nova_mensagem = {"chat_id": chat_id, "text": message}
-  requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
-  return "ok"
+    # return a response to indicate that the request was processed successfully
+    return "ok"
   
