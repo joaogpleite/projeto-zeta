@@ -28,6 +28,7 @@ def coleta_dados_view():
     headers = data.pop(0)
     df = pd.DataFrame(data, columns=headers)
     return df[['Modalidade', 'Situação']]
+    print(df.columns)
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
