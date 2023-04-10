@@ -21,7 +21,7 @@ with open("insperautomacao-joao", mode="w") as fobj:
 conta = ServiceAccountCredentials.from_json_keyfile_name("insperautomacao-joao")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1bmLZIrWU1GG_ikJKRcZNtmmFELcYrBK2dMYqFQIV0Gs")  # Replace with your Google Sheets key
-sheet = planilha.worksheet("lic1")  # Replace with the name of your worksheet
+sheet = planilha.worksheet("Planilha_1")  # Replace with the name of your worksheet
 
 
 # Set up Flask app
