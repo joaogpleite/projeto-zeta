@@ -66,7 +66,7 @@ def dedoduro():
   resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=mensagem)
   return f"Mensagem enviada. Resposta ({resposta.status_code}): {resposta.text}"
 
-@app.route("/dedoduro2)
+@app.route("/dedoduro2")
 def dedoduro2():
   sheet.append_row(["Joao", "Leite", "a partir do Flask"])
   return "Planilha escrita!"
