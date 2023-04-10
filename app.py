@@ -24,10 +24,7 @@ app = Flask(__name__)
 # define a new route for handling the /classificar command
 @app.route("/classificar", methods=["POST"])
 def classificar():
-    # open the Google Sheets document
-    sheet = client.open_by_url(doc_url).sheet1
-
-    # get the values from the cells and create a pandas DataFrame
+    
     data = sheet.get_all_values()
     headers = data.pop(0)
     df = pd.DataFrame(data, columns=headers)
