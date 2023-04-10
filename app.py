@@ -14,7 +14,7 @@ TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 # Set up Google Sheets API
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
 with open("credenciais.json", mode="w") as fobj:
-    fobj.write(GOOGLE_SHEETS_CREDENTIALS)
+  fobj.write(GOOGLE_SHEETS_CREDENTIALS)
 conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
 api = gspread.authorize(conta)
 planilha_google = api.open_by_key("1bmLZIrWU1GG_ikJKRcZNtmmFELcYrBK2dMYqFQIV0Gs")  # Replace with your Google Sheets key
