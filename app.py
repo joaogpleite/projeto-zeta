@@ -23,6 +23,10 @@ sheet = planilha_google.worksheet("lic1")  # Replace with the name of your works
 app = Flask(__name__)
 
 @app.route("/telegram-bot", methods=['POST'])
+def telegram_bot():
+  update = request.json
+  chat_id = update["message"]["chat"]["id"]
+  message = update["message"]["text"]
 
 @app.route("/")
 def index():
