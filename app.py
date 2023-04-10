@@ -22,6 +22,8 @@ sheet = planilha_google.worksheet("lic1")  # Replace with the name of your works
 
 app = Flask(__name__)
 
+@app.route("/telegram-bot", methods=['POST'])
+
 @app.route("/")
 def index():
     return "olá" #print(resultado_scraper)
