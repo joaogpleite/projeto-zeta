@@ -25,8 +25,8 @@ app = Flask(__name__)
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
-    update = request.json
-    for update in dados:
+    updates = request.json["result"]
+    for update in updates:
         update_id = update["update_id"]
         if "message" not in update:
             print(f"ERROR: not a menssagem: {update}")
