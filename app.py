@@ -24,22 +24,8 @@ sheet = planilha.worksheet("lic1")  # Replace with the name of your worksheet
 app = Flask(__name__)
 
 data = sheet.get_all_values()
-    headers = data.pop(0)
-    df = pd.DataFrame(data, columns=headers)
-
-    # Classify the data
-    modalidades = df['Modalidade'].value_counts()
-    finalidades = df['Finalidade/Objeto/Serviço'].value_counts()
-    situacoes = df['Situação'].value_counts()
-
-    dispensa = modalidades.get('Dispensa de Licitacao', 0)
-    chamada = modalidades.get('Chamada Publica', 0)
-    convite = modalidades.get('Convite', 0)
-
-    andamento = situacoes.get('andamento', 0)
-    aberto = situacoes.get('em aberto', 0)
-    encerrada = situacoes.get('encerrada', 0)
-
+headers = data.pop(0)
+df = pd.DataFrame(data, columns=headers)
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
@@ -74,4 +60,3 @@ def telegram_bot():
 
 if __name__ == "__main__":
     app.run(port=5000)
-
