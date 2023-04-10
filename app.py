@@ -28,7 +28,7 @@ sheet = planilha.worksheet("lic1")  # Replace with the name of your worksheet
 app = Flask(__name__)
 
     
-  @app.route("/telegram-bot", methods=["POST"])
+@app.route("/telegram-bot", methods=["POST"])
   def telegram_bot():
     update = request.json
   for update in dados:
