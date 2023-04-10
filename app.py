@@ -36,7 +36,8 @@ def index():
 @app.route('/classificar', methods=['POST'])
 def classificar_command():
     # Get the chat ID of the user who sent the message
-    chat_id = request.json['message']['chat']['id']
+    update = request.json
+    chat_id = update['message']['chat']['id']
 
     # Get the data from the Google Sheets document
     data = sheet.get_all_values()
@@ -48,9 +49,12 @@ def classificar_command():
 
     # Format the message
     response_text = f"Modalidade:\n{modalidade_counts}\n\nSituação:\n{situacao_counts}"
+    nova_mensagem = {"chat_id": chat_id, "text": response_text,}
+
+    
 
     # Send the message to the user
-    requests.post(f'https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage', json={'chat_id': chat_id, 'text': response_text})
+    requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
 
     return 'OK'
 
