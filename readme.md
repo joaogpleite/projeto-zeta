@@ -4,6 +4,16 @@ Este é um script Python que configura um bot do Telegram para classificar dados
 
 ---
 
+## Motivação
+
+Essa solução de bot foi desenvolvida com a motivação de apoiar o trabalho de jornalismo de dados a partir do conteúdo público disponibilizado pela Prefeitura de Taboão da Serra (SP). 
+
+A análise realizada no trabalho de conclusão do Master em Jornalismo de Dados apontou que a cidade de Taboão da Serra gasta uma quantia significativa de dinheiro em processos que não permitem transparência, como é o caso da modalidade 'Dispensa de Licitação', o que prejudica a visibilidade das contas públicas. Para combater esse problema, foi desenvolvido um bot que, em associação com um scrapper de licitações da Prefeitura de Taboão da Serra, atua como monitor dos tipos de licitações. 
+
+Dessa forma, o bot pode ajudar a garantir a transparência dos processos licitatórios e contribuir para o trabalho de jornalismo de dados.
+
+---
+
 ## Configuração
 Para usar este script, você precisará fazer o seguinte:
 
@@ -35,3 +45,19 @@ Este script depende dos seguintes pacotes Python:
 - flask
 
 Estes podem ser instalados usando o pip, no caso do Google Colab, ou através do requirements.txt, estratégia abordada aqui.
+
+---
+
+## Dificuldades
+
+Durante o projeto, foram enfrentadas algumas dificuldades, especialmente devido ao uso de uma plataforma desconhecida, como o Render, e a depuração de seus bugs na conta gratuita. 
+
+Isso ocorreu porque há uma diferença significativa entre a plataforma Google Colab e o Render, o que tornou o processo de validação de erros mais lento. Embora os testes pudessem ser realizados no ambiente Colab e mitigados, a validação dos erros levou muito tempo, o que dificultou bastante a construção do projeto.
+
+Além disso, o tempo necessário para se familiarizar com a plataforma e o domínio necessário do Python tornaram mais complexa a aprendizagem e leitura da documentação específica para implementação de códigos e bibliotecas.
+
+Finalmente, ter um maior domínio do Python seria preferível para lidar com esses problemas.
+
+---
+
+## Aprendizados
