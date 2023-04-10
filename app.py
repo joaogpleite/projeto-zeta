@@ -23,6 +23,24 @@ sheet = planilha.worksheet("lic1")  # Replace with the name of your worksheet
 # Set up Flask app
 app = Flask(__name__)
 
+data = sheet.get_all_values()
+    headers = data.pop(0)
+    df = pd.DataFrame(data, columns=headers)
+
+    # Classify the data
+    modalidades = df['Modalidade'].value_counts()
+    finalidades = df['Finalidade/Objeto/Serviço'].value_counts()
+    situacoes = df['Situação'].value_counts()
+
+    dispensa = modalidades.get('Dispensa de Licitacao', 0)
+    chamada = modalidades.get('Chamada Publica', 0)
+    convite = modalidades.get('Convite', 0)
+
+    andamento = situacoes.get('andamento', 0)
+    aberto = situacoes.get('em aberto', 0)
+    encerrada = situacoes.get('encerrada', 0)
+
+
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
     update = request.json
@@ -33,12 +51,17 @@ def telegram_bot():
     if message == "/start":
         bot.send_message(chat_id, "Olá, para classificar as licitações digite /classificar")
     elif message == "/classificar":
-        chamada_publica = sheet.count("Chamada Pública")
-        convite = sheet.count("Convite")
-        dispensa = sheet.count("Dispensa de Licitação")
-        encerrada = sheet.count("encerrada")
-        aberto = sheet.count("em aberto")
-        andamento = sheet.count("andamento")
+        modalidades = df['Modalidade'].value_counts()
+        finalidades = df['Finalidade/Objeto/Serviço'].value_counts()
+        situacoes = df['Situação'].value_counts()
+        dispensa = modalidades.get('Dispensa de Licitacao', 0)
+        chamada = modalidades.get('Chamada Publica', 0)
+        convite = modalidades.get('Convite', 0)
+         
+        andamento = situacoes.get('andamento', 0)
+        aberto = situacoes.get('em aberto', 0)
+        encerrada = situacoes.get('encerrada', 0)
+        
         response = f"Aquí estão as licitações classificadas por Modalidade e Situação:\n" \
                    f"Chamada Pública: {chamada_publica}\n" \
                    f"Convite: {convite}\n" \
