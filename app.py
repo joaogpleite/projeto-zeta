@@ -1,5 +1,12 @@
 import os
 
+GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+conta = ServiceAccountCredentials.from_json(GOOGLE_SHEETS_CREDENTIALS)
+
+
+
+import os
+
 import requests
 from flask import Flask
 from tchan import ChannelScraper
