@@ -28,18 +28,6 @@ app = Flask(__name__)
 def index():
     return "olá" #print(resultado_scraper)
 
-# Define a route to handle the /start command
-@app.route('/start', methods=['POST'])
-def start_command():
-    # Get the chat ID of the user who sent the message
-    chat_id = request.json['message']['chat']['id']
-
-    # Send a message to the user
-    response_text = "Olá! Para classificar as licitações digite /classificar"
-    requests.post(f'https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage', json={'chat_id': chat_id, 'text': response_text})
-
-    return 'OK'
-
 # Define a route to handle the /classificar command
 @app.route('/classificar', methods=['POST'])
 def classificar_command():
