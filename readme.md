@@ -1,6 +1,6 @@
 # Bot de Classficação de Licitações da Pref. de Taboão da Serra (SP).
 
-Este é um script Python que configura um bot do Telegram para **classificar dados de um documento do Google Sheets**. O prejto faz parte do trabalho final da disciplina de **Algoritmos de Automação do Master de Jornalismo de Dados, Automação e Data Storytelling do Insper (SP)**.
+Este é um script Python que configura um bot do Telegram para **classificar dados de um documento do Google Sheets**. O projeto faz parte do trabalho final da disciplina de **Algoritmos de Automação do Master de Jornalismo de Dados, Automação e Data Storytelling do Insper (SP)**.
 
 ---
 
