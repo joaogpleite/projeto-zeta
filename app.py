@@ -21,52 +21,43 @@ with open("insperautomacao-joao", mode="w") as fobj:
 conta = ServiceAccountCredentials.from_json_keyfile_name("insperautomacao-joao")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1bmLZIrWU1GG_ikJKRcZNtmmFELcYrBK2dMYqFQIV0Gs")  # Replace with your Google Sheets key
-sheet = planilha.worksheet("Planilha_1")  # Replace with the name of your worksheet
+sheet = planilha.worksheet("lic1")  # Replace with the name of your worksheet
 
 
 # Set up Flask app
 app = Flask(__name__)
 
-
-# Handle the /start command
-@bot.message_handler(commands=['start'])
-def handle_start(message):
-    response = "Olá, para classificar a sua planilha digite /classificar"
-    bot.send_message(message.chat.id, response)
-
-
-# Handle the /classificar command
-@app.route("/classificar", methods=["POST"])
-def classificar():
-    # Get data from the Google Sheets document
-    data = sheet.get_all_values()
-    headers = data.pop(0)
-    df = pd.DataFrame(data, columns=headers)
-
-    # Classify the data
-    modalidades = df['Modalidade'].value_counts()
-    finalidades = df['Finalidade/Objeto/Serviço'].value_counts()
-    situacoes = df['Situação'].value_counts()
-
-    dispensa = modalidades.get('Dispensa de Licitacao', 0)
-    chamada = modalidades.get('Chamada Publica', 0)
-    convite = modalidades.get('Convite', 0)
-
-    andamento = situacoes.get('andamento', 0)
-    aberto = situacoes.get('em aberto', 0)
-    encerrada = situacoes.get('encerrada', 0)
-
-    # Send the response to the user
-    response = f"Dispensa de Licitação: {dispensa}\n"
-    response += f"Chamada Pública: {chamada}\n"
-    response += f"Convite: {convite}\n"
-    response += f"-----------------------------------\n"
-    response += f"Andamento: {andamento}\n"
-    response += f"Em aberto: {aberto}\n"
-    response += f"Encerrada: {encerrada}"
-    chat_id = request.json["message"]["chat"]["id"]
-    bot.send_message(chat_id, response)
-
+    
+  @app.route("/telegram-bot", methods=["POST"])
+  def telegram_bot():
+    update = request.json
+  for update in dados:
+    update_id = update["update_id"]
+    if "message" not in update:
+      print(f"ERROR: not a menssagem: {update}")
+      continue
+    # Extrai dados para mostrar mensagem recebida
+    first_name = update["message"]["from"]["first_name"]
+    sender_id = update["message"]["from"]["id"]
+    if "text" not in update["message"]:
+      continue  # Essa mensagem não é um texto!
+    message = update["message"]["text"]
+    chat_id = update["message"]["chat"]["id"]
+    datahora = str(datetime.datetime.fromtimestamp(update["message"]["date"]))
+    if "username" in update["message"]["from"]:
+      username = update["message"]["from"]["username"]
+    else:
+      username = "[não definido]"
+    print(f"[{datahora}] Nova mensagem de {first_name} @{username} ({chat_id}): {message}")
+    mensagens.append([datahora, "recebida", username, first_name, chat_id, message])
+    # Define qual será a resposta e envia
+    if message == "/start":
+      texto_resposta = "Olá! Seja bem-vinda(o). *Digite* /noticias para ver as últimas."
+    else:
+      texto_resposta = "Não entendi!"
+    nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
+    requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  
     # Return a response to indicate that the request was processed successfully
     return "ok"
 
