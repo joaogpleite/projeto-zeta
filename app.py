@@ -1,19 +1,21 @@
 import os
 
-GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-conta = ServiceAccountCredentials.from_json(GOOGLE_SHEETS_CREDENTIALS)
-
-
-
-import os
-
+import gspread
 import requests
 from flask import Flask
+from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
+GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
+with open("credenciais.json", mode="w") as fobj:
+  fobj.write(GOOGLE_SHEETS_CREDENTIALS)
+conta = ServiceAccountCredentials.from_json_keyfilename("credenciais.json")
+api = gspread.authorize(conta) 
+planilha = api.open_by_key("1bmLZIrWU1GG_ikJKRcZNtmmFELcYrBK2dMYqFQIV0Gs")
+sheet = planilha.worksheet("lic1")
 app = Flask(__name__)
 
 
@@ -63,3 +65,8 @@ def dedoduro():
   mensagem = {"chat_id": TELEGRAM_ADMIN_ID, "text": "Alguém acessou a página dedo duro!"}
   resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=mensagem)
   return f"Mensagem enviada. Resposta ({resposta.status_code}): {resposta.text}"
+
+@app.route("/dedoduro2)
+def dedoduro2():
+  sheet.append_row(["Joao", "Leite", "a partir do Flask"])
+  return "Planilha escrita!"
