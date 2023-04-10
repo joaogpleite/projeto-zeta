@@ -36,7 +36,7 @@ Quando uma solicitação é recebida, o script irá classificar os dados do docu
 
 ---
 
-## Dependências
+## Dependências :clipboard:
 Este script depende dos seguintes pacotes Python:
 
 - os
