@@ -4,7 +4,7 @@ Este é um script Python que configura um bot do Telegram para **classificar dad
 
 ---
 
-## Motivação
+## Motivação :bulb:
 
 Essa solução de bot foi desenvolvida com a motivação de apoiar o trabalho de jornalismo de dados a partir do conteúdo público disponibilizado pela Prefeitura de Taboão da Serra (SP). 
 
@@ -16,7 +16,8 @@ Dessa forma, o bot pode ajudar a garantir a transparência dos processos licitat
 
 ---
 
-## Configuração
+## Configuração :wrench:
+
 Para usar este script, você precisará fazer o seguinte:
 
 1. Configurar um bot do Telegram e obter sua chave de API.
@@ -26,7 +27,7 @@ Para usar este script, você precisará fazer o seguinte:
 ---
 
 
-## Executando o Script
+## Executando o Script :computer:
 Para executar o script, basta executá-lo em um ambiente Python. 
 
 O script irá configurar uma aplicação web Flask e ouvir solicitações na endpoint/classificar. 
@@ -50,7 +51,7 @@ Estes podem ser instalados usando o pip, no caso do Google Colab, ou através do
 
 ---
 
-## Dificuldades
+## Dificuldades :no_entry_sign:
 
 Durante o projeto, foram enfrentadas algumas dificuldades, especialmente devido ao uso de uma plataforma desconhecida, como o Render, e a depuração de seus bugs na conta gratuita. 
 
@@ -61,7 +62,7 @@ Além disso, **o tempo necessário para se familiarizar com a plataforma e o dom
 
 ---
 
-## Aprendizados
+## Aprendizados :heavy_check_mark:
 
 Essas habilidades listadas são essenciais para o trabalho com desenvolvimento de software e análise de dados.
 
@@ -74,7 +75,3 @@ Igualmente, o **conhecimento sobre aplicações de serviço de nuvem** permite o
 A **melhoria das habilidades de scrapping** é importante para coletar e extrair informações de fontes diversas, o que é fundamental para a análise de dados. 
 
 Por fim, ter um **maior domínio das habilidades com manipulação de dados de um dataframe para o Google Sheets** permite a análise e organização de dados de forma mais eficiente e colaborativa. Todos esses conhecimentos podem ser aplicados em diferentes áreas, como inteligência artificial, análise de dados, desenvolvimento de aplicativos, entre outras.
-
-
-
-
