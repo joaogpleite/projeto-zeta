@@ -13,7 +13,11 @@ Para usar este script, você precisará fazer o seguinte:
 
 
 ## Executando o Script
-Para executar o script, basta executá-lo em um ambiente Python. O script irá configurar uma aplicação web Flask e ouvir solicitações na endpoint /classificar. Quando uma solicitação é recebida, o script irá classificar os dados do documento do Google Sheets e enviar os resultados para o chat do Telegram com o ID especificado pelo parâmetro chat_id na solicitação.
+Para executar o script, basta executá-lo em um ambiente Python. 
+
+O script irá configurar uma aplicação web Flask e ouvir solicitações na endpoint/classificar. 
+
+Quando uma solicitação é recebida, o script irá classificar os dados do documento do Google Sheets e enviar os resultados para o chat do Telegram com o ID especificado pelo parâmetro chat_id na solicitação.
 
 ---
 
