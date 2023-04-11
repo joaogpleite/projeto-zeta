@@ -75,3 +75,9 @@ Igualmente, o **conhecimento sobre aplicações de serviço de nuvem** permite o
 A **melhoria das habilidades de scrapping** é importante para coletar e extrair informações de fontes diversas, o que é fundamental para a análise de dados. 
 
 Por fim, ter um **maior domínio das habilidades com manipulação de dados de um dataframe para o Google Sheets** permite a análise e organização de dados de forma mais eficiente e colaborativa. Todos esses conhecimentos podem ser aplicados em diferentes áreas, como inteligência artificial, análise de dados, desenvolvimento de aplicativos, entre outras.
+
+---
+
+## Desafios
+
+- Construir um servidor próprio para não depender mais do Render
