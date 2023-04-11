@@ -80,4 +80,4 @@ Por fim, ter um **maior domínio das habilidades com manipulação de dados de u
 
 ## Desafios
 
-- Construir um servidor próprio para não depender mais do Render
+- Construir um servidor próprio, seja com um Raspberry Pi 3 ou um computador velho, para não depender mais do Render (nunca mais)
